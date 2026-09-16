@@ -1,4 +1,4 @@
-$log = "$env:USERPROFILE\.openclaw\workspace\net_restore.log"
+﻿$log = "$PSScriptRoot\net_restore.log"
 function L($m) { $m | Out-File -FilePath $log -Append -Encoding UTF8 }
 L "=== 恢复自动协商 + 复查 $(Get-Date) ==="
 $n = "以太网"

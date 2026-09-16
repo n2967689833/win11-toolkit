@@ -45,7 +45,7 @@ $g=[System.Drawing.Graphics]::FromImage($bmp)
 $hdc=$g.GetHdc()
 $ok=[NW]::PrintWindow([NW]::Dock,$hdc,2)
 $g.ReleaseHdc($hdc); $g.Dispose()
-$out=Join-Path $env:USERPROFILE ".openclaw\workspace\desktop_theme"
+$out=$PSScriptRoot
 $bmp.Save("$out\dock_now.png",[System.Drawing.Imaging.ImageFormat]::Png)
 $cols=New-Object int[] $w
 for($x=0;$x -lt $w;$x++){

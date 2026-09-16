@@ -73,7 +73,7 @@ public class WK {
 Add-Type -AssemblyName System.Drawing
 
 $base="HKCU:\Software\WinSTEP2000\NeXuS\Docks"
-$dir="$env:USERPROFILE\.openclaw\workspace\desktop_theme"
+$dir="$PSScriptRoot"
 $ico="C:\Program Files\OEM\机械革命控制中心\logo\gamingcenter_STD.ico"
 
 # 关闭已打开的控制中心窗口，便于点击测试判定

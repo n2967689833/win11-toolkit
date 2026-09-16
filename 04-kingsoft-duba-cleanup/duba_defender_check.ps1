@@ -1,4 +1,4 @@
-﻿$log="$env:USERPROFILE\.openclaw\workspace\desktop_theme\duba_defender.log"
+﻿$log="$PSScriptRoot\duba_defender.log"
 "=== Defender 排除项 $(Get-Date) ===" | Out-File $log -Encoding UTF8
 try{
   $p=Get-MpPreference

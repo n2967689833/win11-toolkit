@@ -1,5 +1,5 @@
 ﻿$ErrorActionPreference = 'Continue'
-$log = "$env:USERPROFILE\.openclaw\workspace\desktop_theme\duba_cleanup3.log"
+$log = "$PSScriptRoot\duba_cleanup3.log"
 function L($m){ $m | Out-File -FilePath $log -Append -Encoding UTF8 }
 L "=== 注册开机清理任务 $(Get-Date) ==="
 

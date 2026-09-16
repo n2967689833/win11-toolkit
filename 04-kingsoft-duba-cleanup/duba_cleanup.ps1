@@ -1,5 +1,5 @@
 ﻿$ErrorActionPreference = 'Continue'
-$log = "$env:USERPROFILE\.openclaw\workspace\desktop_theme\duba_cleanup.log"
+$log = "$PSScriptRoot\duba_cleanup.log"
 function L($m){ $m | Out-File -FilePath $log -Append -Encoding UTF8 }
 
 L "=== 毒霸残留清理 $(Get-Date) ==="

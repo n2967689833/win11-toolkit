@@ -1,4 +1,4 @@
-﻿$log = "$env:USERPROFILE\.openclaw\workspace\net_opt.log"
+﻿$log = "$PSScriptRoot\net_opt.log"
 function L($m) { $m | Out-File -FilePath $log -Append -Encoding UTF8 }
 L "=== 网卡降速项优化 $(Get-Date) ==="
 
