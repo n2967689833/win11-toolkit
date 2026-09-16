@@ -1,0 +1,23 @@
+# 忽略日志与临时产物
+*.log
+*.tmp
+*.old
+
+# 本机真实配置（含账号等敏感信息，用 example 文件代替）
+njupt_config.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# 大体积二进制（安装包/镜像等不入库）
+*.exe
+*.msi
+*.msixbundle
+*.zip
+
+# 系统文件
+Thumbs.db
+desktop.ini

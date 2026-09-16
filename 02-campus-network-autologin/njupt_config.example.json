@@ -1,0 +1,14 @@
+﻿{
+  "account": "你的学号",
+  "isp": "cmcc",
+  "password_dpapi": "",
+  "interfaces": [],
+  "interval": 60,
+  "portal_host": "10.10.244.11",
+  "portal_https_port": 802,
+  "portal_http_port": 801,
+  "wlanacip": "10.255.252.150",
+  "wlanacname": "XL-BRAS-SR8806-X",
+  "log_file": "autologin.log",
+  "verbose": true
+}
