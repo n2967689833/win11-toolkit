@@ -38,4 +38,4 @@ Windows 11 系统 / 网络 / 桌面 **自动化工具集** —— 每套工具�
 
 ## 📄 License
 
-[MIT](LICENSE) © 2026 <YOUR NAME>
+[MIT](LICENSE) © 2026 boring
