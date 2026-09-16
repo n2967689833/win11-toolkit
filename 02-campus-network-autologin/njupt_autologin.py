@@ -511,11 +511,16 @@ def cmd_install(cfg):
     pyw = os.path.join(os.path.dirname(sys.executable), "pythonw.exe")
     exe = pyw if os.path.exists(pyw) else sys.executable
     script = os.path.abspath(__file__)
-    tr = '\\"%s\\" \\"%s\\" --once' % (exe, script)
-    # 每分钟运行一次；开机登录后 1 分钟内即会自动认证，掉线也会在 1 分钟内自动重连
-    cmd = ["schtasks", "/Create", "/F", "/TN", TASK_NAME, "/TR", tr,
-           "/SC", "MINUTE", "/MO", "1"]
+    # 先用 schtasks 建任务（每分钟触发，语义最稳），再用 PowerShell 计划任务 API 精确写入动作：
+    # subprocess 列表传参会把路径引号转义成 \" 并被 schtasks 原样存下来（任务的命令行会坏掉）
+    cmd = ["schtasks", "/Create", "/F", "/TN", TASK_NAME, "/TR", "cmd /c exit", "/SC", "MINUTE", "/MO", "1"]
     r = subprocess.run(cmd, capture_output=True, timeout=60, creationflags=NO_WINDOW)
+    ps = ("$a = New-ScheduledTaskAction -Execute '" + exe + "' -Argument '\"" + script + "\" --once'; "
+          "Set-ScheduledTask -TaskName '" + TASK_NAME + "' -Action $a | Out-Null")
+    r2 = subprocess.run(["powershell", "-NoProfile", "-ExecutionPolicy", "Bypass", "-Command", ps],
+                        capture_output=True, timeout=120, creationflags=NO_WINDOW)
+    if r2.returncode != 0:
+        log("⚠️ 计划任务动作写入失败，任务可能是空动作，请重跑 --install", cfg, force=True)
     out = (r.stdout or b"").decode("gbk", "ignore") + (r.stderr or b"").decode("gbk", "ignore")
     if r.returncode == 0:
         log("✅ 已安装计划任务「%s」：每分钟自动检查/登录" % TASK_NAME, cfg, force=True)
